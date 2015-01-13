@@ -136,5 +136,22 @@ package com.davidkblackmon.projecteuler {
 71636269561882670428252483600823257530420752963450""".filter(_ >= ' ')
     }
   }
+
+  package problem9 {
+    object Problem9 {
+      def solution(sum: Int): Int = {
+        val l = (1 to sum)
+        val abs = l.map(a => l.map(b => List(a,b))).flatten.toList
+        val ab = abs.filter( d => isOurTriple(d(0),d(1),sum)).head
+        val abc = ab :+ (sum - ab.sum)
+        println(abc)
+        abc.product
+      }
+
+      def isOurTriple(a: Int, b: Int, sum: Int): Boolean = {
+        a*a + b*b == (sum-a-b)*(sum-a-b)
+      }
+    }
+  }
 }
 
